@@ -1,18 +1,9 @@
-/* Owl Caroussel */
-.owl-carousel .owl-nav button.owl-next,.owl-carousel .owl-nav button.owl-prev{
-    font-size: 6em;
-    margin: 0 20px;
-    color: white;
-    outline: 0;
-}
-/* Owl Caroussel */
-
 .App {
   text-align: center;
 }
 
 body{
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ),url("https://wallpaperaccess.com/full/37981.jpg");
+  background-image: linear-gradient(to left, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ),url("https://wallpaperaccess.com/full/37981.jpg");
   background-size: cover;
 }
 
@@ -21,9 +12,11 @@ width: 200px;
 height: 60px;
 margin:0 30px; 
 }
+
 .navmenu{
   margin-right: 50px;
 }
+
 .navbar-dark .navbar-nav .nav-link{
   color:white !important;
 }
@@ -91,8 +84,25 @@ margin:0 30px;
     overflow: hidden;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
     width: 300px;
-    height: 430px;
-}
+    height: 430px !important;
+} 
+
+
+/* media query to card//logo-footer//addedtitre// */
+
+@media (min-width: 0) and (max-width: 630px) {
+    .mediaquery{
+        display: flex;
+        justify-content: center;
+    }
+    .ActionMovies-css{
+        display: flex;
+        justify-content: center;
+    }
+  }
+
+/* end of media query to card//logo-footer//addedtitre// */
+
 
 .card .poster {
     position: relative;
@@ -235,8 +245,9 @@ margin:0 30px;
 display: flex;
 justify-content: flex-start;
 color: white;
-padding-left:10px;
-padding-bottom: 10px;
+padding-left:8px;
+padding-bottom: 20px;
+padding-top:25px;
 }
 
 .seriesAdded-container{
@@ -249,12 +260,17 @@ padding-bottom: 10px;
     justify-content: space-around;
     width:25%;
 }
+
+.footer{
+    margin-top: 50px;
+}
+
 .parag-footer{
-color:#808080;
-font-family: sans-serif;
-padding: 15px 0 0 13px; 
-flex-direction: column;
-text-align: start;
+    color:#808080;
+    font-family: sans-serif;
+    padding: 15px 0 0 13px; 
+    flex-direction: column;
+    text-align: start;
 }
 .parag1{
     width:15%;
@@ -265,4 +281,20 @@ text-align: start;
 .container-parag{
     display: flex;
     justify-content: space-between;
+}
+
+/*  ActionMovies-css */
+.ActionMovies-css{
+    display:flex;
+    justify-Content:space-around;
+    flex-Wrap:wrap;
+}
+
+/* end of ActionMovies-css */
+
+@media (min-width: 0) and (max-width: 900px) {
+    .Actiontitle{
+        display: flex;
+        justify-content: center;
+    }
 }

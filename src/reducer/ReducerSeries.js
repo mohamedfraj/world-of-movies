@@ -56,8 +56,8 @@ var tabSeries = [
         description: "Series of adventures, war, and evil that occur throughout the history of the Four Lands.",
         link: 'https://xena.egybest.me/series/the-shannara-chronicles/?ref=search-p2'
     }
-  
 ]
+
 
 const ReducerSeries = (state = tabSeries, action) => {
     switch (action.type) {

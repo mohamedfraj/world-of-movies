@@ -24,7 +24,7 @@ export class Navbars extends Component {
                                 <NavDropdown.Item href="#action/3.4">Home</NavDropdown.Item> */}
                             </NavDropdown>
                             <NavDropdown style={{ color: 'white' }} title="Movies" id="collasible-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                                <Link to='/MoviesAction'><NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item></Link>
                                 <NavDropdown.Item href="#action/3.2">comedy</NavDropdown.Item>
                                 {/* <NavDropdown.Item href="#action/3.3">romantic</NavDropdown.Item>
                                 <NavDropdown.Divider />

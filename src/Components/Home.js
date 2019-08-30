@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import 'react-multi-carousel/lib/styles.css';
 import Navbars from "./navbar";
 import Search from "./search";
 import MoviesAdded from "./moviesAdded";

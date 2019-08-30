@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Route } from "react-router-dom";
 import Home from "./Home";
-import SeriesAction from "./SeriesAction"
+import SeriesAction from "./SeriesAction";
+import MoviesAction from "./MoviesAction"
 
 export class Routes extends Component {
     render() {
@@ -9,6 +10,7 @@ export class Routes extends Component {
                 <div>
                    <Route exact path='/' component={Home}></Route>
                    <Route exact path='/SeriesAction' component={SeriesAction}></Route>
+                   <Route exact path='/MoviesAction' component={MoviesAction}></Route>
                 </div>
         );
     }

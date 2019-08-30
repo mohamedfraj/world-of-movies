@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Container } from "react-bootstrap";
 
 
 export class footer extends Component {
     render() {
         return (
-            <Container style={{height: '41vh'}}>
-                <div className='logo-footer'>
-                    <a style={{ textDecoration: 'none', color: 'grey' }} href='https://www.facebook.com'><i class="fab fa-facebook"></i></a>
-                    <a style={{ textDecoration: 'none', color: 'grey' }} href='https://www.youtube.com'><i class="fab fa-youtube"></i></a>
-                    <a style={{ textDecoration: 'none', color: 'grey' }} href='https://www.instagram.com'><i class="fab fa-instagram"></i></a>
-                    <a style={{ textDecoration: 'none', color: 'grey' }} href='https://www.twitter.com'><i class="fab fa-twitter"></i></a>
+            <Container className="footer" style={{ height: '41vh' }}>
+                <div className='mediaquery'>
+                    <div className='logo-footer'>
+                        <a style={{ textDecoration: 'none', color: 'grey' }} href='https://www.facebook.com'><i class="fab fa-facebook"></i></a>
+                        <a style={{ textDecoration: 'none', color: 'grey' }} href='https://www.youtube.com'><i class="fab fa-youtube"></i></a>
+                        <a style={{ textDecoration: 'none', color: 'grey' }} href='https://www.instagram.com'><i class="fab fa-instagram"></i></a>
+                        <a style={{ textDecoration: 'none', color: 'grey' }} href='https://www.twitter.com'><i class="fab fa-twitter"></i></a>
+                    </div>
                 </div>
                 <div className='container-parag'>
                     <div className='parag-footer parag1'>
@@ -36,7 +38,7 @@ export class footer extends Component {
                         <p>Mentions légales</p>
                     </div>
                 </div>
-                <h5>© 2019 Copyright:<Link style={{textDecoration:'none',color:'#343a40',paddingBottom:'15px'}} to='/'>Worldofmovies.com</Link></h5>
+                <h5>© 2019 Copyright:<Link style={{ textDecoration: 'none', color: '#343a40', paddingBottom: '15px' }} to='/'>Worldofmovies.com</Link></h5>
             </Container>
         );
     }
