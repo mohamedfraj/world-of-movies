@@ -1,7 +1,7 @@
 var moviesInitials = [
     {
         id: 1,
-        img: "https://images-na.ssl-images-amazon.com/images/I/81oTRumvcRL._SY445_.jpg",
+        img: "https://images-na.ssl-images-amazon.com/images/I/61hj0ITyBnL.jpg",
         titre: 'Avengers Infinity War 2018',
         genre: 'Sci-Fi',
         rating: 4,
@@ -69,19 +69,22 @@ var moviesInitials = [
 
 const ReducerMovies = (state = moviesInitials, action) => {
     switch (action.type) {
-        case "ADD_MOVIES":
+        case "ADD_MOVIE":
             return (
-                state.concat(action.newmovies)
+                state.concat(action.newmovie)
             )
-        case "REMOVE_MOVIES":
+        case "REMOVE_MOVIE":
             return (
-                state.filter((el, index) => el.id !== action.id)
+                state.filter(el => el.id !== action._id)
             )
-        //    case "EDIT_MOVIES":
-        //        return(
-        //            state.map((el,index)=>el.id===action.id ?action.)
-        //        )
-
+        case "EDIT_MOVIE":
+            return (
+                state.map(el => el.id === action.movieToEdit.id ? action.movieToEdit : el)
+            )
+        case 'UPDATE_MOVIES':
+            return (
+                state = action.updated
+            )
         default:
             return state
     }

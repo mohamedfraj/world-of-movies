@@ -6,7 +6,7 @@ export class search extends Component {
             <div>
                 <div class="search__container">
                     <p class="search__title">Search, for your favorite movies</p>
-                    <input class="search__input" type="text" placeholder="Search" />
+                    <input onChange={this.search} class="search__input" type="text" placeholder="Search" />
                 </div>
             </div>
         );

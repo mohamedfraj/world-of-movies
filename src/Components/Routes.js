@@ -8,6 +8,8 @@ import AdminPageformovies from "./AdminPageformovies";
 import AdminPageforSeries from "./AdminPageForSeries";
 import AdminAddMovies from "./AdminAddMovies";
 import AdminAddSeries from "./AdminAddSeries";
+import AdminEditMovies from "./AdminEditMovies";
+import AdminEditSeries from "./AdminEditSeries";
 
 export class Routes extends Component {
     render() {
@@ -21,6 +23,8 @@ export class Routes extends Component {
                 <Route exact path='/Admin/PageForSeries' component={AdminPageforSeries}></Route>
                 <Route exact path='/AddMovies' component={AdminAddMovies}></Route>
                 <Route exact path='/AddSeries' component={AdminAddSeries}></Route>
+                <Route exact path='/EditMovies/:id' render={(props) => <AdminEditMovies movieID={props.match.params.id}/>}></Route>
+                <Route exact path='/EditSeries/:id' render={(props) => <AdminEditSeries serieID={props.match.params.id}/>}></Route>
             </div>
         );
     }

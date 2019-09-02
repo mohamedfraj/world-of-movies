@@ -4,6 +4,17 @@ import MovieCard from "./MovieCard";
 import Carousel from 'react-multi-carousel';
 
 export class MoviesAdded extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            keyword: ''
+        }
+    }
+    search = (e) => {
+        this.setState({
+            keyword: e.target.value
+        })
+    }
     render() {
         const responsive = {
             superLargeDesktop: {
@@ -40,7 +51,7 @@ export class MoviesAdded extends Component {
                     <h3 className='addedtitre'>Recent Movies:</h3>
                 </div>
                 <Carousel responsive={responsive}>
-                    {moviesTab.map((el, i) => <MovieCard key={i} info={el} />)}
+                    {moviesTab.filter(el=>el.titre.toUpperCase().includes(this.state.keyword.toUpperCase().trim())).map((el, i) => <MovieCard key={i} info={el} />)}
                 </Carousel>
             </div>
         );

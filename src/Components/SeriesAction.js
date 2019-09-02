@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 import Navbar from "./navbar";
-import Search from "./search";
 import MovieCard from "./MovieCard";
 import Footer from "./footer";
+import Search from './search';
 
 export class SeriesAction extends Component {
 

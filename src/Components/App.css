@@ -8,14 +8,24 @@ body{
 }
 
 .page-home-Admin{
-    background-image: linear-gradient(to left, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ),url("https://ak3.picdn.net/shutterstock/videos/4043053/thumb/1.jpg");
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ),url("https://wallpapercave.com/wp/wp2508260.jpg");
     background-size: cover;
     height:730px;
     display:flex;
     justify-content:space-around;
 }
 
+.add-inputs{
+    width: 500px
+}
 
+.add-form{
+    display:flex;
+    justify-content:center ;
+    flex-direction:column;
+    height: 100vh;
+    align-items: center;
+}
 .logo-worldmovies{
 width: 200px;
 height: 60px;
@@ -326,3 +336,4 @@ form input[type=search]:focus {
 } 
 
 /*end of css for input search to page admin  */
+
