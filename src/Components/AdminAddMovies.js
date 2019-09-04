@@ -12,8 +12,7 @@ export class AdminAddMovies extends Component {
             genre: '',
             rating: 1,
             link: '',
-            description: '',
-            id: Math.round(Math.random()*100000)
+            description: ''
         }
     }
     handleChange = (e) => {
@@ -23,7 +22,6 @@ export class AdminAddMovies extends Component {
     addNewMovie = () => {
         axios.post('/add_movie', {...this.state})
             .then(() => this.props.addMovie({
-                id: this.state.id,
                 img: this.state.img,
                 titre: this.state.titre,
                 genre: this.state.genre,

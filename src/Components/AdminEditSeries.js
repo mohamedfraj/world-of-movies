@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 
@@ -6,14 +7,32 @@ export class AdminEditSeries extends Component {
     state = {}
     componentDidMount() {
         this.setState({
-            ...this.props.series.filter(el => String(el.id) === this.props.serieID)[0]
+            ...this.props.series.filter(el => el._id === this.props.serieID)[0]
         })
     }
-   handleChange=(e)=>{
-       this.setState({
-           [e.target.name]:e.target.value
-       })
-   }
+    handleChange = e => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+    modifySerie = () => {
+        axios.put(`/edit_serie/${this.state._id}`, {
+            img: this.state.img,
+            titre: this.state.titre,
+            genre: this.state.genre,
+            rating: this.state.rating,
+            link: this.state.link,
+            description: this.state.description
+        })
+            .then(() => this.props.editSerie({ ...this.state }))
+    }
+
+    RemoveSerie = () => {
+        axios.delete(`/delete_serie/${this.state._id}`)
+            .then((res) => res.data)
+        // .catch((err) => alert(err))
+    }
+
     render() {
         return (
             <div className='App add-form'>
@@ -25,8 +44,8 @@ export class AdminEditSeries extends Component {
                 <textarea className="add-inputs" type="text" name='description' rows={6} value={this.state.description} onChange={this.handleChange} placeholder='Description' />
                 <div style={{ display: 'flex', justifyContent: 'flex-end', width: '500px', marginTop: '25px' }}>
                     <Link to='/Admin/PageForSeries'><button type="button" class="btn btn-warning">BACK</button></Link>
-                    <Link to='/Admin/PageForSeries'><button onClick={() => this.props.editSerie(this.state)} type="button" style={{ width: 'fit-content', marginLeft: '20px' }} className="btn btn-primary">EDIT</button></Link>
-                    <Link to='/Admin/PageForSeries'><button onClick={() => this.props.deleteSerie(this.state.id)} type="button" style={{ width: 'fit-content', marginLeft: '20px' }} className="btn btn-danger">REMOVE</button></Link>
+                    <Link to='/Admin/PageForSeries'><button onClick={this.modifySerie} type="button" style={{ width: 'fit-content', marginLeft: '20px' }} className="btn btn-primary">EDIT</button></Link>
+                    <Link to='/Admin/PageForSeries'><button onClick={this.RemoveSerie} type="button" style={{ width: 'fit-content', marginLeft: '20px' }} className="btn btn-danger">REMOVE</button></Link>
                 </div>
             </div>
         );

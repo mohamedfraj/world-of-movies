@@ -1,21 +1,47 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux"
+import { connect } from "react-redux";
+import axios from "axios";
 import Navbar from "./navbar";
 import MovieCard from "./MovieCard";
 import Footer from "./footer";
-import Search from './search';
+
 
 export class SeriesAction extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            keyword: ''
+        }
+    }
+    search = (e) => {
+        this.setState({
+            keyword: e.target.value
+        })
+    }
+
+    componentDidMount() {
+        axios.get('/series')
+            .then((res) => this.props.updateTab(res.data))
+    }
 
     render() {
         const { Seriestab } = this.props
         const newarray = Seriestab.filter((el, i) => el.genre === 'action')
-        console.log(newarray)
         return (
             <div className='App'>
                 <Navbar />
-                <Search />
-                {newarray.map((el, i) => <MovieCard key={i} info={el} />)}
+                <div>
+                    <div class="search__container">
+                        <p class="search__title">Search, for your favorite series</p>
+                        <input onChange={this.search} class="search__input" type="text" placeholder="Search" />
+                    </div>
+                </div>
+                <div className='Actiontitle'>
+                    <h3 className='addedtitre'>Series: Action</h3>
+                </div>
+                <div className='ActionMovies-css'>
+                    {newarray.filter(el => el.titre.toUpperCase().includes(this.state.keyword.toUpperCase().trim())).map((el, i) => <MovieCard key={i} info={el} />)}
+                </div>
                 <Footer />
             </div>
         );
@@ -27,5 +53,15 @@ const mapStateToProps = state => {
         Seriestab: state.ReducerSeries
     }
 }
+const mapDispatchToProps = dispatch => {
+    return {
+        updateTab: updated => {
+            dispatch({
+                type: 'UPDATE_SERIES',
+                updated
+            })
+        }
+    }
+}
 
-export default connect(mapStateToProps)(SeriesAction);
+export default connect(mapStateToProps, mapDispatchToProps)(SeriesAction);

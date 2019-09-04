@@ -10,6 +10,9 @@ import AdminAddMovies from "./AdminAddMovies";
 import AdminAddSeries from "./AdminAddSeries";
 import AdminEditMovies from "./AdminEditMovies";
 import AdminEditSeries from "./AdminEditSeries";
+import MovieSF from "./MovieSF";
+import SerieSF from "./SerieSF";
+import InfoForMovie from "./InfoForMovie";
 
 export class Routes extends Component {
     render() {
@@ -18,13 +21,16 @@ export class Routes extends Component {
                 <Route exact path='/' component={Home}></Route>
                 <Route exact path='/SeriesAction' component={SeriesAction}></Route>
                 <Route exact path='/MoviesAction' component={MoviesAction}></Route>
+                <Route exact path='/MovieSF' component={MovieSF}></Route>
+                <Route exact path='/SerieSF' component={SerieSF}></Route>
                 <Route exact path='/Admin' component={Admin}></Route>
                 <Route exact path='/Admin/PageForMovies' component={AdminPageformovies}></Route>
                 <Route exact path='/Admin/PageForSeries' component={AdminPageforSeries}></Route>
                 <Route exact path='/AddMovies' component={AdminAddMovies}></Route>
                 <Route exact path='/AddSeries' component={AdminAddSeries}></Route>
-                <Route exact path='/EditMovies/:id' render={(props) => <AdminEditMovies movieID={props.match.params.id}/>}></Route>
-                <Route exact path='/EditSeries/:id' render={(props) => <AdminEditSeries serieID={props.match.params.id}/>}></Route>
+                <Route exact path='/EditMovies/:id' render={(props) => <AdminEditMovies movieID={props.match.params.id} />}></Route>
+                <Route exact path='/EditSeries/:id' render={(props) => <AdminEditSeries serieID={props.match.params.id} />}></Route>
+                <Route exact path='/InfoForMovie/:id' render={(props) => <InfoForMovie movieID={props.match.params.id} />}></Route>
             </div>
         );
     }

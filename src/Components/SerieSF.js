@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux"
-import axios from 'axios';
+import { connect } from "react-redux";
+import axios from "axios";
 import Navbar from "./navbar";
 import MovieCard from "./MovieCard";
 import Footer from "./footer";
 
 
-export class MoviesAction extends Component {
+export class SerieSF extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,15 +20,16 @@ export class MoviesAction extends Component {
     }
 
     componentDidMount() {
-        axios.get('/movies')
+        axios.get('/series')
             .then((res) => this.props.updateTab(res.data))
     }
 
     render() {
-        const { Moviestab } = this.props
-        const newarray = Moviestab.filter((el, i) => el.genre === 'action')
+        const { Seriestab } = this.props
+        const newarray = Seriestab.filter((el, i) => el.genre === 'Sci-Fi')
+        console.log(newarray)
         return (
-            <div className="App">
+            <div className='App'>
                 <Navbar />
                 <div>
                     <div class="search__container">
@@ -37,7 +38,7 @@ export class MoviesAction extends Component {
                     </div>
                 </div>
                 <div className='Actiontitle'>
-                    <h3 className='addedtitre'>Action is dun</h3>
+                    <h3 className='addedtitre'>Series: SF</h3>
                 </div>
                 <div className='ActionMovies-css'>
                     {newarray.filter(el => el.titre.toUpperCase().includes(this.state.keyword.toUpperCase().trim())).map((el, i) => <MovieCard key={i} info={el} />)}
@@ -47,20 +48,22 @@ export class MoviesAction extends Component {
         );
     }
 }
+
 const mapStateToProps = state => {
     return {
-        Moviestab: state.ReducerMovies
+        Seriestab: state.ReducerSeries
     }
 }
+
 const mapDispatchToProps = dispatch => {
     return {
         updateTab: updated => {
             dispatch({
-                type: 'UPDATE_MOVIES',
+                type: 'UPDATE_SERIES',
                 updated
             })
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MoviesAction);
+export default connect(mapStateToProps, mapDispatchToProps)(SerieSF);

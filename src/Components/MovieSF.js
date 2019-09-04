@@ -6,7 +6,7 @@ import MovieCard from "./MovieCard";
 import Footer from "./footer";
 
 
-export class MoviesAction extends Component {
+export class MovieSF extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,14 +19,14 @@ export class MoviesAction extends Component {
         })
     }
 
-    componentDidMount() {
+    componentDidMount(){
         axios.get('/movies')
-            .then((res) => this.props.updateTab(res.data))
+        .then((res) => this.props.updateTab(res.data))
     }
 
     render() {
         const { Moviestab } = this.props
-        const newarray = Moviestab.filter((el, i) => el.genre === 'action')
+        const newarray = Moviestab.filter((el, i) => el.genre === 'Sci-Fi')
         return (
             <div className="App">
                 <Navbar />
@@ -40,7 +40,7 @@ export class MoviesAction extends Component {
                     <h3 className='addedtitre'>Action is dun</h3>
                 </div>
                 <div className='ActionMovies-css'>
-                    {newarray.filter(el => el.titre.toUpperCase().includes(this.state.keyword.toUpperCase().trim())).map((el, i) => <MovieCard key={i} info={el} />)}
+                    {newarray.filter(el=>el.titre.toUpperCase().includes(this.state.keyword.toUpperCase().trim())).map((el, i) => <MovieCard key={i} info={el} />)}
                 </div>
                 <Footer />
             </div>
@@ -63,4 +63,5 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MoviesAction);
+export default connect(mapStateToProps,mapDispatchToProps)(MovieSF);
+

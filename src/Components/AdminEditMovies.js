@@ -7,11 +7,13 @@ export class AdminEditMovies extends Component {
     state = {}
     componentDidMount() {
         this.setState({
-            ...this.props.movies.filter(el => String(el.id) === this.props.movieID)[0]
+            ...this.props.movies.filter(el => el._id === this.props.movieID)[0]
         })
     }
     handleChange = e => {
-        this.setState({ [e.target.name]: e.target.value })
+        this.setState({
+            [e.target.name]: e.target.value
+        })
     }
     modifyMovie = () => {
         axios.put(`/edit_movie/${this.state._id}`, {
@@ -22,8 +24,15 @@ export class AdminEditMovies extends Component {
             link: this.state.link,
             description: this.state.description
         })
-            .then(() => this.props.editMovie({...this.state}))
+            .then(() => this.props.editMovie({ ...this.state }))
     }
+
+    RemoveMovie = () => {
+        axios.delete(`/delete_movie/${this.state._id}`)
+            .then((res) => res.data)
+        // .catch((err) => alert(err))
+    }
+
     render() {
         return (
             <div className='App add-form'>
@@ -36,7 +45,7 @@ export class AdminEditMovies extends Component {
                 <div style={{ display: 'flex', justifyContent: 'flex-end', width: '500px', marginTop: '25px' }}>
                     <Link to='/Admin/PageForMovies'><button type="button" class="btn btn-warning">BACK</button></Link>
                     <Link to='/Admin/PageForMovies'><button onClick={this.modifyMovie} type="button" style={{ width: 'fit-content', marginLeft: '20px' }} className="btn btn-primary">EDIT</button></Link>
-                    <Link to="/Admin/PageForMovies"><button onClick={() => this.props.deleteMovie(this.state.id)} type="button" style={{ width: 'fit-content', marginLeft: '20px' }} className="btn btn-danger">REMOVE</button></Link>
+                    <Link to="/Admin/PageForMovies"><button onClick={this.RemoveMovie} type="button" style={{ width: 'fit-content', marginLeft: '20px' }} className="btn btn-danger">REMOVE</button></Link>
                 </div>
             </div>
         );
@@ -61,7 +70,7 @@ const mapDispatchToProps = dispatch => {
                 type: "EDIT_MOVIE",
                 movieToEdit
             })
-        }
+        },
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AdminEditMovies);

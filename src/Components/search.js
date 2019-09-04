@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
 export class search extends Component {
-    render() {
+    
+    render() {  
         return (
             <div>
                 <div class="search__container">

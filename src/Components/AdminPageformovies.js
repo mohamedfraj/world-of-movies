@@ -41,7 +41,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-
 export class AdminPageformovies extends Component {
     constructor(props) {
         super(props);
@@ -59,7 +58,7 @@ export class AdminPageformovies extends Component {
         axios.get('/movies')
             .then((res) => this.props.updateTab(res.data))
     }
-    
+
     render() {
         const { moviesTab } = this.props
         return (
@@ -88,8 +87,8 @@ export class AdminPageformovies extends Component {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {moviesTab.filter(el => el.titre.toUpperCase().includes(this.state.keyword.toUpperCase().trim())).map(row => (
-                                    <StyledTableRow key={row.titre} component={Link} to={`/EditMovies/${row.id}`}>
+                                {moviesTab.filter(el => el.titre.toUpperCase().includes(this.state.keyword.toUpperCase().trim())).map((row, i) => (
+                                    <StyledTableRow key={i} component={Link} to={`/EditMovies/${row._id}`}>
                                         <StyledTableCell component="th" scope="row">{row.titre}</StyledTableCell>
                                         <StyledTableCell align="center">{row.genre}</StyledTableCell>
                                         <StyledTableCell align="center">{row.rating}</StyledTableCell>
@@ -112,7 +111,7 @@ const mapStateToProps = state => {
     }
 }
 const mapDispatchToProps = dispatch => {
-    return{
+    return {
         updateTab: updated => {
             dispatch({
                 type: 'UPDATE_MOVIES',

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -47,11 +48,18 @@ export class AdminPageforSeries extends Component {
             keyword: ''
         }
     }
-    search = (e) => {
+    search = e => {
         this.setState({
             keyword: e.target.value
         })
     }
+
+    componentDidMount=()=> {
+        axios.get('/series')
+            .then((res) => this.props.updatet(res.data))
+    }
+            
+
     render() {
         const { seriesTab } = this.props
         return (
@@ -59,7 +67,11 @@ export class AdminPageforSeries extends Component {
             <div style={{ paddingTop: "50px" }}>
                 <div style={{ display: "flex", paddingBottom: '10px', justifyContent: "center" }}>
                     <div style={{ paddingRight: '20px', }}>
-                        <Link to='/AddSeries'><button type="button" class="btn btn-primary" style={{ borderRadius: "5px", border: "none", fontSize: "18px", padding: "10px" }}>Add Serie</button></Link>
+                        <Link to='/AddSeries'>
+                            <button type="button" class="btn btn-primary" style={{ borderRadius: "5px", border: "none", fontSize: "18px", padding: "10px" }}>
+                                Add Serie
+                            </button>
+                        </Link>
                     </div>
                     {/* BECH YETNA7A */}
                     <div style={{ paddingRight: '20px', }}>
@@ -80,8 +92,8 @@ export class AdminPageforSeries extends Component {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {seriesTab.filter(el=>el.titre.toUpperCase().includes(this.state.keyword.toUpperCase().trim())).map(row => (
-                                    <StyledTableRow key={row.titre} component={Link} to={`/EditSeries/${row.id}`}>
+                                {seriesTab.filter(el => el.titre.toUpperCase().includes(this.state.keyword.toUpperCase().trim())).map((row, i) => (
+                                    <StyledTableRow key={i} component={Link} to={`/EditSeries/${row._id}`}>
                                         <StyledTableCell component="th" scope="row">{row.titre}</StyledTableCell>
                                         <StyledTableCell align="center">{row.genre}</StyledTableCell>
                                         <StyledTableCell align="center">{row.rating}</StyledTableCell>
@@ -104,4 +116,14 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(AdminPageforSeries);
+const mapDispatchToProps = dispatch => {
+    return {
+        updatet: updated => {
+            dispatch({
+                type: 'UPDATE_SERIES',
+                updated
+            })
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(AdminPageforSeries);

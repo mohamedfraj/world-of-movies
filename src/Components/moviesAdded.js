@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from "axios";
 import MovieCard from "./MovieCard";
 import Carousel from 'react-multi-carousel';
 
@@ -15,6 +16,12 @@ export class MoviesAdded extends Component {
             keyword: e.target.value
         })
     }
+
+    componentDidMount() {
+        axios.get('/movies')
+            .then((res) => this.props.updateTab(res.data))
+    }
+
     render() {
         const responsive = {
             superLargeDesktop: {
@@ -47,11 +54,17 @@ export class MoviesAdded extends Component {
         const { moviesTab } = this.props
         return (
             <div>
+                <div>
+                    <div class="search__container">
+                        <p class="search__title">Search, for your favorite movies</p>
+                        <input onChange={this.search} class="search__input" type="text" placeholder="Search" />
+                    </div>
+                </div>
                 <div className='mediaquery'>
                     <h3 className='addedtitre'>Recent Movies:</h3>
                 </div>
                 <Carousel responsive={responsive}>
-                    {moviesTab.filter(el=>el.titre.toUpperCase().includes(this.state.keyword.toUpperCase().trim())).map((el, i) => <MovieCard key={i} info={el} />)}
+                    {moviesTab.filter(el => el.titre.toUpperCase().includes(this.state.keyword.toUpperCase().trim())).map((el, i) => <MovieCard key={i} info={el} />)}
                 </Carousel>
             </div>
         );
@@ -62,4 +75,15 @@ const mapStateToProps = state => {
         moviesTab: state.ReducerMovies
     }
 }
-export default connect(mapStateToProps)(MoviesAdded);
+const mapDispatchToProps = dispatch => {
+    return {
+        updateTab: updated => {
+            dispatch({
+                type: 'UPDATE_MOVIES',
+                updated
+            })
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MoviesAdded);

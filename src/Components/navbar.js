@@ -18,14 +18,14 @@ export class Navbars extends Component {
                             <Link to='/'><Nav.Link style={{ color: 'white' }} href="#deets">Home</Nav.Link></Link>
                             <NavDropdown style={{ color: 'white' }} title="Series" id="collasible-nav-dropdown">
                                 <Link to='/SeriesAction'><NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item></Link>
-                                <NavDropdown.Item href="#action/3.2">comedy</NavDropdown.Item>
+                                <Link to="/SerieSF"><NavDropdown.Item href="#action/3.2">SerieSF</NavDropdown.Item></Link>
                                 {/* <NavDropdown.Item href="#action/3.3">romantic</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="#action/3.4">Home</NavDropdown.Item> */}
                             </NavDropdown>
                             <NavDropdown style={{ color: 'white' }} title="Movies" id="collasible-nav-dropdown">
                                 <Link to='/MoviesAction'><NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item></Link>
-                                <NavDropdown.Item href="#action/3.2">comedy</NavDropdown.Item>
+                                <Link to='/MovieSF'><NavDropdown.Item href="#action/3.2">MovieSF</NavDropdown.Item></Link>
                                 {/* <NavDropdown.Item href="#action/3.3">romantic</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="#action/3.4">Home</NavDropdown.Item> */}

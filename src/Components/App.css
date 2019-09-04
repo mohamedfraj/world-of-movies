@@ -337,3 +337,20 @@ form input[type=search]:focus {
 
 /*end of css for input search to page admin  */
 
+.imgInfo{
+    width: 20%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    margin: 50px;
+}
+
+.container-info{
+    display: flex;
+}
+
+.block-info{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
