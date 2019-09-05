@@ -13,6 +13,8 @@ import AdminEditSeries from "./AdminEditSeries";
 import MovieSF from "./MovieSF";
 import SerieSF from "./SerieSF";
 import InfoForMovie from "./InfoForMovie";
+import InfoForSerie from "./InfoForSerie";
+import aboutUs from "./aboutUs"
 
 export class Routes extends Component {
     render() {
@@ -31,6 +33,8 @@ export class Routes extends Component {
                 <Route exact path='/EditMovies/:id' render={(props) => <AdminEditMovies movieID={props.match.params.id} />}></Route>
                 <Route exact path='/EditSeries/:id' render={(props) => <AdminEditSeries serieID={props.match.params.id} />}></Route>
                 <Route exact path='/InfoForMovie/:id' render={(props) => <InfoForMovie movieID={props.match.params.id} />}></Route>
+                <Route exact path='/InfoForSerie/:id' render={(props) => <InfoForSerie serieID={props.match.params.id} />}></Route>
+                <Route exact path='/aboutUs' component={aboutUs}></Route>
             </div>
         );
     }

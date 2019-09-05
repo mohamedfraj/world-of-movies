@@ -6,7 +6,7 @@ import { Container } from "react-bootstrap";
 export class footer extends Component {
     render() {
         return (
-            <Container className="footer" style={{ height: '41vh' }}>
+            <Container className="footer">
                 <div className='mediaquery'>
                     <div className='logo-footer'>
                         <a style={{ textDecoration: 'none', color: 'grey' }} href='https://www.facebook.com'><i class="fab fa-facebook"></i></a>

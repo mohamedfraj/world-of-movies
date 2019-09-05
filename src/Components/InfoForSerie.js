@@ -4,25 +4,23 @@ import StarRatingComponent from 'react-star-rating-component';
 import heart from '../heart.svg';
 import heart2 from '../heart2.svg';
 
-export class InfoForMovie extends Component {
-state={ liked: false }
-
+export class InfoForSerie extends Component {
+    state = { liked: false }
     componentDidMount() {
         this.setState({
-            ...this.props.movies.filter(el => el._id === this.props.movieID)[0]
+            ...this.props.series.filter(el => el._id === this.props.serieID)[0]
         })
     }
 
     likeIt = () => {
-        this.setState({liked: !this.state.liked })
+        this.setState({ liked: !this.state.liked })
 
-        if(this.state.liked === false){
+        if (this.state.liked === false) {
             this.props.likeMovie(this.state)
-        }else{
+        } else {
             this.props.disLikeMovie(this.state)
         }
     }
-    
 
     render() {
         return (
@@ -56,14 +54,16 @@ state={ liked: false }
         );
     }
 }
+
 const mapStateToProps = state => {
     return {
-        movies: state.ReducerMovies,
+        series: state.ReducerSeries,
         likes: state.LikesReducer
     }
 }
+
 const mapDispatchToProps = dispatch => {
-    return{
+    return {
         likeMovie: () => {
             dispatch({
                 type: 'LIKE_IT'
@@ -76,4 +76,5 @@ const mapDispatchToProps = dispatch => {
         },
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(InfoForMovie);
+
+export default connect(mapStateToProps, mapDispatchToProps)(InfoForSerie);

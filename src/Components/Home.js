@@ -7,27 +7,26 @@ import SeriesAdded from "./SeriesAdded";
 import Footer from "./footer";
 
 
-
 export class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {}
     }
 
-
     render() {
         return (
             <div className="App" >
-                <header className="App-header">
-                    <Navbars />
-                    <MoviesAdded />
-                    <SeriesAdded />
+                <Navbars />
+                <MoviesAdded />
+                <SeriesAdded />
+                <div className="tesst">
                     <Footer />
-                </header>
+                </div>
             </div>
         );
     }
 }
+
 const mapStateToProps = state => {
     return {
         moviesReducer: state.ReducerMovies

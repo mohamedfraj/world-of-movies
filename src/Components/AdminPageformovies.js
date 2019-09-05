@@ -28,7 +28,6 @@ const StyledTableRow = withStyles(theme => ({
     },
 }))(TableRow);
 
-
 const useStyles = makeStyles(theme => ({
     root: {
         width: '100%',
@@ -40,7 +39,6 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-
 export class AdminPageformovies extends Component {
     constructor(props) {
         super(props);
@@ -48,6 +46,7 @@ export class AdminPageformovies extends Component {
             keyword: ''
         }
     }
+
     search = e => {
         this.setState({
             keyword: e.target.value
@@ -62,15 +61,18 @@ export class AdminPageformovies extends Component {
     render() {
         const { moviesTab } = this.props
         return (
-
-            <div style={{ paddingTop: "50px" }}>
+            <div className="App" style={{ paddingTop: "50px", height: '100vh' }}>
                 <div style={{ display: "flex", paddingBottom: '10px', justifyContent: "center" }}>
                     <div style={{ paddingRight: '20px', }}>
-                        <Link to='/AddMovies'><button type="button" class="btn btn-primary" style={{ borderRadius: "5px", border: "none", fontSize: "18px", padding: "10px" }}>Add Movie</button></Link>
+                        <Link to='/AddMovies'>
+                            <button type="button" class="btn btn-primary" style={{ borderRadius: "5px", border: "none", fontSize: "18px", padding: "10px" }}>
+                                Add Movie
+                            </button>
+                        </Link>
                     </div>
                     {/* BECH YETNA7A */}
                     <div style={{ paddingRight: '20px', }}>
-                        <Link to='/'><button type="button" class="btn btn-primary" style={{ borderRadius: "5px", border: "none", fontSize: "18px", padding: "10px" }}>Home Page</button></Link>
+                        <Link to='/'><button type="button" class="btn btn-danger" style={{ borderRadius: "5px", border: "none", fontSize: "18px", padding: "10px" }}>Home Page</button></Link>
                     </div>
                     <input onChange={this.search} type="search" placeholder="Search..." />
                 </div>
@@ -79,21 +81,21 @@ export class AdminPageformovies extends Component {
                         <Table className={useStyles.table}>
                             <TableHead>
                                 <TableRow>
-                                    <StyledTableCell>Titre</StyledTableCell>
+                                    <StyledTableCell align="center">Titre</StyledTableCell>
                                     <StyledTableCell align="center">Genre</StyledTableCell>
-                                    <StyledTableCell align="right">Rating</StyledTableCell>
-                                    <StyledTableCell align="left">Image URL</StyledTableCell>
-                                    <StyledTableCell align="left">Link</StyledTableCell>
+                                    <StyledTableCell align="center">Rating</StyledTableCell>
+                                    <StyledTableCell align="center">Image URL</StyledTableCell>
+                                    {/* <StyledTableCell align="left">Link</StyledTableCell> */}
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                 {moviesTab.filter(el => el.titre.toUpperCase().includes(this.state.keyword.toUpperCase().trim())).map((row, i) => (
                                     <StyledTableRow key={i} component={Link} to={`/EditMovies/${row._id}`}>
-                                        <StyledTableCell component="th" scope="row">{row.titre}</StyledTableCell>
+                                        <StyledTableCell align="left" scope="row">{row.titre}</StyledTableCell>
                                         <StyledTableCell align="center">{row.genre}</StyledTableCell>
                                         <StyledTableCell align="center">{row.rating}</StyledTableCell>
                                         <StyledTableCell align="left">{row.img.slice(0, 50)}</StyledTableCell>
-                                        <StyledTableCell align="left">{row.link.slice(0, 50)}</StyledTableCell>
+                                        {/* <StyledTableCell align="left">{row.link.slice(0, 50)}</StyledTableCell> */}
                                     </StyledTableRow>
                                 ))}
                             </TableBody>
@@ -105,11 +107,13 @@ export class AdminPageformovies extends Component {
         );
     }
 }
+
 const mapStateToProps = state => {
     return {
         moviesTab: state.ReducerMovies
     }
 }
+
 const mapDispatchToProps = dispatch => {
     return {
         updateTab: updated => {
@@ -120,4 +124,5 @@ const mapDispatchToProps = dispatch => {
         }
     }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(AdminPageformovies);

@@ -11,10 +11,11 @@ export class AdminAddMovies extends Component {
             titre: '',
             genre: '',
             rating: 1,
-            link: '',
+            // link: '',
             description: ''
         }
     }
+
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value })
     }
@@ -26,11 +27,12 @@ export class AdminAddMovies extends Component {
                 titre: this.state.titre,
                 genre: this.state.genre,
                 rating: this.state.rating,
-                link: this.state.link,
+                // link: this.state.link,
                 description: this.state.description
             })
             )
     }
+
     render() {
         return (
             <div className='App add-form'>
@@ -38,7 +40,7 @@ export class AdminAddMovies extends Component {
                 <input className="add-inputs" name="titre" type="text" onChange={this.handleChange} placeholder='Titre' ></input>
                 <input className="add-inputs" name="genre" type="text" onChange={this.handleChange} placeholder='Genre' ></input>
                 <input className="add-inputs" name="rating" type="number" min="1" max="5" onChange={this.handleChange} placeholder='Rating' ></input>
-                <input className="add-inputs" name="link" type="text" onChange={this.handleChange} placeholder='LinkOfMovies' ></input>
+                {/* <input className="add-inputs" name="link" type="text" onChange={this.handleChange} placeholder='LinkOfMovies' ></input> */}
                 <textarea className="add-inputs" type="text" rows={6} name="description" onChange={this.handleChange} placeholder='Description' />
                 <div style={{ display: 'flex', justifyContent: 'flex-end', width: '500px', marginTop: '25px' }}>
                     <Link to='/Admin/PageForMovies'><button type="button" class="btn btn-warning">BACK</button></Link>
@@ -52,6 +54,7 @@ export class AdminAddMovies extends Component {
         );
     }
 }
+
 const mapDispatchToProps = dispatch => {
     return {
         addMovie: newmovie => {
@@ -62,6 +65,5 @@ const mapDispatchToProps = dispatch => {
         }
     }
 }
-
 
 export default connect(null, mapDispatchToProps)(AdminAddMovies);

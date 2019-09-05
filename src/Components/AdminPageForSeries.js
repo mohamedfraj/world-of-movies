@@ -28,7 +28,6 @@ const StyledTableRow = withStyles(theme => ({
     },
 }))(TableRow);
 
-
 const useStyles = makeStyles(theme => ({
     root: {
         width: '100%',
@@ -40,7 +39,6 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-
 export class AdminPageforSeries extends Component {
     constructor(props) {
         super(props);
@@ -48,6 +46,7 @@ export class AdminPageforSeries extends Component {
             keyword: ''
         }
     }
+
     search = e => {
         this.setState({
             keyword: e.target.value
@@ -59,12 +58,10 @@ export class AdminPageforSeries extends Component {
             .then((res) => this.props.updatet(res.data))
     }
             
-
     render() {
         const { seriesTab } = this.props
         return (
-
-            <div style={{ paddingTop: "50px" }}>
+            <div className="App" style={{ paddingTop: "50px",height: '100vh' }}>
                 <div style={{ display: "flex", paddingBottom: '10px', justifyContent: "center" }}>
                     <div style={{ paddingRight: '20px', }}>
                         <Link to='/AddSeries'>
@@ -75,7 +72,7 @@ export class AdminPageforSeries extends Component {
                     </div>
                     {/* BECH YETNA7A */}
                     <div style={{ paddingRight: '20px', }}>
-                        <Link to='/'><button type="button" class="btn btn-primary" style={{ borderRadius: "5px", border: "none", fontSize: "18px", padding: "10px" }}>Home Page</button></Link>
+                        <Link to='/'><button type="button" class="btn btn-danger" style={{ borderRadius: "5px", border: "none", fontSize: "18px", padding: "10px" }}>Home Page</button></Link>
                     </div>
                     <input onChange={this.search} type="search" placeholder="Search..." />
                 </div>
@@ -84,11 +81,11 @@ export class AdminPageforSeries extends Component {
                         <Table className={useStyles.table}>
                             <TableHead>
                                 <TableRow>
-                                    <StyledTableCell>Titre</StyledTableCell>
+                                    <StyledTableCell align='center'>Titre</StyledTableCell>
                                     <StyledTableCell align="center">Genre</StyledTableCell>
-                                    <StyledTableCell align="right">Rating</StyledTableCell>
-                                    <StyledTableCell align="left">Image URL</StyledTableCell>
-                                    <StyledTableCell align="left">Link</StyledTableCell>
+                                    <StyledTableCell align="center">Rating</StyledTableCell>
+                                    <StyledTableCell align="center">Image URL</StyledTableCell>
+                                    {/* <StyledTableCell align="left">Link</StyledTableCell> */}
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -98,7 +95,7 @@ export class AdminPageforSeries extends Component {
                                         <StyledTableCell align="center">{row.genre}</StyledTableCell>
                                         <StyledTableCell align="center">{row.rating}</StyledTableCell>
                                         <StyledTableCell align="left">{row.img.slice(0, 50)}</StyledTableCell>
-                                        <StyledTableCell align="left">{row.link.slice(0, 50)}</StyledTableCell>
+                                        {/* <StyledTableCell align="left">{row.link.slice(0, 50)}</StyledTableCell> */}
                                     </StyledTableRow>
                                 ))}
                             </TableBody>
@@ -110,6 +107,7 @@ export class AdminPageforSeries extends Component {
         );
     }
 }
+
 const mapStateToProps = state => {
     return {
         seriesTab: state.ReducerSeries
@@ -126,4 +124,5 @@ const mapDispatchToProps = dispatch => {
         }
     }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(AdminPageforSeries);

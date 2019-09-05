@@ -30,8 +30,7 @@ export class Navbars extends Component {
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="#action/3.4">Home</NavDropdown.Item> */}
                             </NavDropdown>
-                            <Nav.Link style={{ color: 'white' }} eventKey={2} href="#memes">About Us
-                           </Nav.Link>
+                            <Link to="/aboutUs"><Nav.Link style={{ color: 'white' }} eventKey={2} href="#memes">About Us</Nav.Link></Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

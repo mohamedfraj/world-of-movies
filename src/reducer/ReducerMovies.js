@@ -21,7 +21,6 @@ const ReducerMovies = (state = [], action) => {
             return (
                 state = action.updated
             )
-
         default:
             return state
     }

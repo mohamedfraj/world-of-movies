@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import axios from "axios";
-import MovieCard from './MovieCard';
+import SerieCard from './SerieCard';
 import Carousel from 'react-multi-carousel';
 
 
@@ -65,7 +65,7 @@ export class SeriesAdded extends Component {
                     <h3 className='addedtitre'>Recent Series:</h3>
                 </div>
                 <Carousel responsive={responsive}>
-                    {Seriestab.filter(el=>el.titre.toUpperCase().includes(this.state.keyword.toUpperCase().trim())).map((el, i) => <MovieCard key={i} info={el} />)}
+                    {Seriestab.filter(el=>el.titre.toUpperCase().includes(this.state.keyword.toUpperCase().trim())).map((el, i) => <SerieCard key={i} info={el} />)}
                 </Carousel>
             </div>
         );
