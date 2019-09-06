@@ -21,16 +21,20 @@ export class AdminAddMovies extends Component {
     }
 
     addNewMovie = () => {
-        axios.post('/add_movie', {...this.state})
-            .then(() => this.props.addMovie({
-                img: this.state.img,
-                titre: this.state.titre,
-                genre: this.state.genre,
-                rating: this.state.rating,
-                // link: this.state.link,
-                description: this.state.description
-            })
-            )
+        if (this.state.img === '' || this.state.titre === '' || this.state.genre === '' || this.state.rating === '' || this.state.description === '') {
+            return alert('all field must be filled')
+        } else {
+            axios.post('/add_movie', { ...this.state })
+                .then(() => this.props.addMovie({
+                    img: this.state.img,
+                    titre: this.state.titre,
+                    genre: this.state.genre,
+                    rating: this.state.rating,
+                    // link: this.state.link,
+                    description: this.state.description
+                })
+                )
+        }
     }
 
     render() {
@@ -44,9 +48,9 @@ export class AdminAddMovies extends Component {
                 <textarea className="add-inputs" type="text" rows={6} name="description" onChange={this.handleChange} placeholder='Description' />
                 <div style={{ display: 'flex', justifyContent: 'flex-end', width: '500px', marginTop: '25px' }}>
                     <Link to='/Admin/PageForMovies'><button type="button" class="btn btn-warning">BACK</button></Link>
-                    <Link to='/Admin/PageForMovies'>
-                    <button onClick={this.addNewMovie} type="button" style={{ width: 'fit-content', marginLeft: '20px' }}className="btn btn-primary">
-                        ADD
+                    <Link to={this.state.img === '' || this.state.titre === '' || this.state.genre === '' || this.state.rating === '' || this.state.description === '' ? "/AddMovies" : "/Admin/PageForMovies"}>
+                        <button onClick={this.addNewMovie} type="button" style={{ width: 'fit-content', marginLeft: '20px' }} className="btn btn-primary">
+                            ADD
                     </button>
                     </Link>
                 </div>

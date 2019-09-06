@@ -21,16 +21,21 @@ export class AdminAddSeries extends Component {
     }
 
     addnewserie = () => {
-        axios.post('/add_serie', { ...this.state })
-            .then(() => this.props.addserie({
-                img: this.state.img,
-                titre: this.state.titre,
-                genre: this.state.genre,
-                rating: this.state.rating,
-                // link: this.state.link,
-                description: this.state.description
-            })
-            )
+        if (this.state.img === '' || this.state.titre === '' || this.state.genre === '' || this.state.rating === '' || this.state.description === '') {
+            return alert('all field must be filled')
+        } else {
+
+            axios.post('/add_serie', { ...this.state })
+                .then(() => this.props.addserie({
+                    img: this.state.img,
+                    titre: this.state.titre,
+                    genre: this.state.genre,
+                    rating: this.state.rating,
+                    // link: this.state.link,
+                    description: this.state.description
+                })
+                )
+        }
     }
 
     render() {
@@ -44,7 +49,7 @@ export class AdminAddSeries extends Component {
                 <textarea className="add-inputs" type="text" rows={6} name="description" onChange={this.handleChange} placeholder='Description' />
                 <div style={{ display: 'flex', justifyContent: 'flex-end', width: '500px', marginTop: '25px' }}>
                     <Link to='/Admin/PageForSeries'><button type="button" class="btn btn-warning">BACK</button></Link>
-                    <Link to="/Admin/PageForSeries" type="button" onClick={this.addnewserie} style={{ width: 'fit-content', marginLeft: '20px' }} className="btn btn-primary">
+                    <Link to={this.state.img === '' || this.state.titre === '' || this.state.genre === '' || this.state.rating === '' || this.state.description === '' ? "/AddSeries" : "/Admin/PageForSeries"} type="button" onClick={this.addnewserie} style={{ width: 'fit-content', marginLeft: '20px' }} className="btn btn-primary">
                         ADD
                     </Link>
                 </div>
